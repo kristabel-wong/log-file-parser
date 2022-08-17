@@ -6,12 +6,24 @@ The task is to parse a log file containing HTTP requests and to report on its co
 * The top 3 most visited URLs
 * The top 3 most active IP addresses
 
-I have interpreted the second point to read paths, excluding domain name.
+I have interpreted the second point to read paths, excluding domain name. i.e.
+
+* `http://example.net/faq/`
+* `/faq/`
+
+The above are both counted as `/faq/` in my `urlFreq` object. 
+
 
 Chosen Tech:
-* JavaScript
 * Node.js
 * Jest 
 
 
-Please run `npm test` to run the test scripts.
+## Installation
+```
+git clone https://github.com/kristabel-wong/log-file-parser.git
+cd log-file-parser
+npm install 
+node main.js   # to run with default filename
+npm test       # to run test suite
+```
