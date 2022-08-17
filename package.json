@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "watch": "jest --watchAll",
-    "start": "node js/main.js"
+    "watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
