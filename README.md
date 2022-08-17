@@ -27,3 +27,6 @@ npm install
 node main.js   # to run with default filename
 npm test       # to run test suite
 ```
+
+Known issues:
+* The entire file currently being loaded into memory. Can be slow when dealing with large files. 
