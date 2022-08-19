@@ -11,7 +11,7 @@ const logAnalysis = {
     loadFile: function (file) {
         const fs = require('fs'); // Next Steps: use streams for reading large files
     
-        const data = fs.readFileSync(file, {encoding:'utf8', flag:'r'})
+        const data = fs.readFileSync(file, {encoding:'utf8', flag:'r'}) // async version of readFile
 
         this.fileContents = data.split(/\r?\n/); // make an array element for every new line/enter
         
@@ -44,6 +44,7 @@ const logAnalysis = {
         const fullURL = currentLine.substring(currentLine.indexOf("GET ") + 4, currentLine.indexOf(" HTTP"))
 
         let path = "";
+        // let path = fullURL;
 
         if (fullURL.startsWith('http')) {
             const url = new URL(fullURL)
@@ -51,11 +52,30 @@ const logAnalysis = {
         } else {
             path = fullURL;
         }
-               
+
+        // adding http://example.net at the start of each path
+        // if (fullURL.startsWith('http://example.net')) { 
+        //     path = fullURL; 
+        // } else {
+        //     path = 'http://example.net' + fullURL;
+        // }
+
+
+        // addin just the first part of the path e.g. /faq or /blog
+        // if (fullURL.startsWith('http')) {
+        //     const url = new URL(fullURL)
+        //     pathnameLong = url.pathname; 
+        //     path = pathnameLong.substring(0, pathnameLong.indexOf('/', 1))
+
+        // } else {
+        //     path = fullURL.substring(0, fullURL.indexOf('/', 1));
+        // }        
+        
+        
 
         if ( path in this.stats.urlFreq) {
             this.stats.urlFreq[ path ] += 1; // increment instance
-        } else if ( path !== "" ){
+        } else if ( path !== "" ){ // ignores all the spaces at the bottom of the log file
             this.stats.urlFreq[ path ] = 1; // create an instance
         }
     },
@@ -68,7 +88,7 @@ const logAnalysis = {
 
         const info = Object.entries( data );
         
-        info.sort( function(a, b) {
+        info.sort( function (a, b) {
             return b[1] - a[1];
         });
 

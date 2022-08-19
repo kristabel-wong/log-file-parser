@@ -14,7 +14,7 @@ const expectedTopURLs = [
 
 describe('logAnalysis', () => {
 
-    test('readTheFile should read the file contents', () => {
+    test('loadFile should read the file contents', () => {
         logAnalysis.loadFile('programming-task-example-data_(1).log');
         expect(logAnalysis.fileContents.length).toBe(24);
     });
